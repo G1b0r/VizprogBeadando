@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_library.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,19 @@ namespace project_library.MVVM.View
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
 
         private void localModeBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is LoginViewModel viewModel)
+            {
+                viewModel.Password = txtPassword.Password;
+            }
         }
     }
 }

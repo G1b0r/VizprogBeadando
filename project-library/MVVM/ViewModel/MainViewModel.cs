@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using project_library.Core;
 using project_library.MVVM.View;
 
@@ -10,12 +11,6 @@ namespace project_library.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {
-        public RelayCommand LoginViewCommand { get; set; }
-        public RelayCommand RegisterViewCommand { get; set; }
-
-        public LoginViewModel LoginVM { get; set; }
-
-        public RegisterViewModel RegisterVM { get; set; }
 
         private object _currentView;
 
@@ -30,16 +25,34 @@ namespace project_library.MVVM.ViewModel
         }
 
 
-        public MainViewModel() 
+        public ICommand LoginViewCommand { get; }
+        public ICommand RegisterViewCommand { get; }
+
+        public MainViewModel()
         {
-            LoginVM = new LoginViewModel();
-            RegisterVM = new RegisterViewModel();
+            // Initialize commands
+            LoginViewCommand = new RelayCommand(o => CurrentView = new LoginViewModel());
+            RegisterViewCommand = new RelayCommand(o => CurrentView = new RegisterViewModel());
 
-            CurrentView = LoginVM;
-
-            LoginViewCommand = new RelayCommand(o => { CurrentView = LoginVM; });
-            RegisterViewCommand = new RelayCommand(o => { CurrentView = RegisterVM; });
+            // Set default view
+            CurrentView = new LoginViewModel();
         }
+
+
+
+        /*private bool? _isDarkTheme;
+
+        public bool? IsDarkTheme
+        {
+          get { return _isDarkTheme; }
+          set
+          {
+           _isDarkTheme = value;
+           OnPropertyChanged();
+          }
+        }*/
+
+
 
     }
 }

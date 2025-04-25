@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
+using project_library.MVVM.ViewModel;
 
 namespace project_library
 {
@@ -20,6 +21,7 @@ namespace project_library
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         public bool IsDarkTheme { get; set; }

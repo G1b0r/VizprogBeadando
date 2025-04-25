@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
+using project_library.MVVM.ViewModel;
 
 namespace project_library
 {
@@ -23,6 +24,7 @@ namespace project_library
         public Discovery()
         {
             InitializeComponent();
+            //DataContext = new MainViewModel();
         }
         public bool IsDarkTheme { get; set; }
         private readonly PaletteHelper paletteHelper = new PaletteHelper();

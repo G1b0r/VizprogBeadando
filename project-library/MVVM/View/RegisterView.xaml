@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TextBlock Text="Register" Foreground="White" FontSize="30" HorizontalAlignment="Left" Margin="20,10,0,20"/>
-        <Button x:Name="localModeBtn"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="200" />
+        <Button x:Name="localModeBtn"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="200" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
         <StackPanel>
             <TextBlock Margin="0 50 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Welcome to our Library"/>
             <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Please register your account to acces extended features"/>
