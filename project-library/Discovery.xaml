@@ -48,9 +48,10 @@
                 <TextBlock Text="Library" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="20,0,0,0"/>
 
                 <StackPanel Grid.Row="1">
-                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
+                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285"/>
                     <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
-                    <RadioButton Content="Mittomén" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
+                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
+                    <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
                 </StackPanel>
 
                 <TextBox Width="300" Height="75" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBox}"/>
