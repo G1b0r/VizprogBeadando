@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace project_library.MVVM.ViewModel
 {
-    class MyBooksView
+    class MyBooksViewModel
     {
     }
 }
