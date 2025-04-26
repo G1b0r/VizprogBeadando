@@ -8,17 +8,31 @@
             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Register" Foreground="White" FontSize="30" HorizontalAlignment="Left" Margin="20,10,0,20"/>
-        <Button x:Name="localModeBtn"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="200" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+        <TextBlock Text="Register" Foreground="White" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,20"/>
+        <Button x:Name="localModeBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="180" FontSize="12" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
         <StackPanel>
-            <TextBlock Margin="0 50 0 5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Welcome to our Library"/>
-            <TextBlock FontSize="17" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Please register your account to acces extended features"/>
-            <TextBox Margin="0 15 0 0" x:Name="txtUsername" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
-            <PasswordBox Margin="0 20 0 0" x:Name="txtPassword" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Enter password" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
-            <PasswordBox Margin="0 20 0 0" x:Name="txtPasswordAgain" Width="300" FontSize="18" materialDesign:HintAssist.Hint="Enter password again" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
-            <Button Margin="0 20 0 0" x:Name="registerBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}"  Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="Register"/>
-        </StackPanel>
+            <TextBlock Margin="0 30 0 5" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Welcome to our Library"/>
+            <TextBlock FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Please register your account to access extended features"/>
 
+            <!-- Username Input -->
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"  Margin="0 10 0 0" x:Name="txtUsername" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <!-- Full Name Input -->
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFullName" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Full Name" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <!-- Phone Number Input -->
+            <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtPhoneNumber" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Phone Number"  PreviewTextInput="PhoneNumber_PreviewTextInput" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+            <!-- Password Input -->
+            <PasswordBox Margin="0 15 0 0" x:Name="txtPassword" PasswordChanged="PasswordBox_PasswordChanged" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Password" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
+
+            <!-- Register Button -->
+            <Button Margin="0 15 0 0" x:Name="registerBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="45" Width="250" materialDesign:ButtonAssist.CornerRadius="8" FontSize="14" Content="Register"  Command="{Binding RegisterCommand}" />
+            
+            <!-- Success and Error Messages -->
+            <TextBlock Text="{Binding SuccessMessage}" Foreground="Green" Margin="0,10,0,0" />
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,10,0,0" />
+        </StackPanel>
     </Grid>
 </UserControl>
 
