@@ -17,7 +17,7 @@ namespace project_library.MVVM.ViewModel
         private string _password;
         private string _errorMessage;
         private bool _isLoginSuccessful;
-
+        private readonly MainViewModel _mainViewModel;
         public string Username
         {
             get
@@ -64,8 +64,9 @@ namespace project_library.MVVM.ViewModel
 
         public ICommand LoginCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel(MainViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         }
 
@@ -79,7 +80,7 @@ namespace project_library.MVVM.ViewModel
         {
             try
             {
-                using (var context = new LibraryDbContext()) // Use the Library class as your DbContext
+                using (var context = new LibraryDbContext())
                 {
                     var user = context.Members
                         .FirstOrDefault(m => m.username == Username && m.password == Password);
@@ -89,21 +90,13 @@ namespace project_library.MVVM.ViewModel
                         IsLoginSuccessful = true;
                         ErrorMessage = string.Empty;
 
-                        if (user.is_admin)
-                        {
-                            MessageBox.Show("Login successful! Welcome, Admin.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Login successful! Welcome, User.");
-                        }
-                        
+                        // Navigate to HomeView
+                        _mainViewModel.CurrentView = new HomeViewModel(_mainViewModel);
                     }
                     else
                     {
                         IsLoginSuccessful = false;
                         ErrorMessage = "Invalid username or password.";
-                        MessageBox.Show("❌ User not found.");
                     }
                 }
             }
@@ -111,13 +104,8 @@ namespace project_library.MVVM.ViewModel
             {
                 IsLoginSuccessful = false;
                 ErrorMessage = $"An error occurred: {ex.Message}";
-
-                // Log the full exception details
                 Console.WriteLine("Exception Message: " + ex.Message);
                 Console.WriteLine("Stack Trace: " + ex.StackTrace);
-
-                // Optionally, display the full details in a MessageBox (for debugging purposes)
-                MessageBox.Show($"An error occurred:\n{ex.Message}\n\nStack Trace:\n{ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

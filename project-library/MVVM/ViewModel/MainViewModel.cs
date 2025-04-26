@@ -9,10 +9,11 @@ using project_library.MVVM.View;
 
 namespace project_library.MVVM.ViewModel
 {
-    class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject
     {
 
         private object _currentView;
+        private readonly Stack<object> _navigationStack = new Stack<object>();
 
         public object CurrentView
         {
@@ -29,34 +30,28 @@ namespace project_library.MVVM.ViewModel
         public ICommand RegisterViewCommand { get; }
         public ICommand HomeViewCommand { get; }
         public ICommand MyBooksViewCommand { get; }
-        public ICommand BookDetailView { get; }
+        public ICommand BookDetailViewCommand { get; }
+        public ICommand GoBackCommand { get; }
 
         public MainViewModel()
         {
+            _currentView = null!; // Suppress warning for non-nullable field
+            GoBackCommand = null!; // Suppress warning for non-nullable property
+
             // Initialize commands
-            LoginViewCommand = new RelayCommand(o => CurrentView = new LoginViewModel());
+            // Initialize commands
+            LoginViewCommand = new RelayCommand(o => CurrentView = new LoginViewModel(this));
             RegisterViewCommand = new RelayCommand(o => CurrentView = new RegisterViewModel());
-            HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel());
+            HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this));
             MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel());
-            BookDetailView = new RelayCommand(o => CurrentView = new BookDetailViewModel());
+            BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
 
             // Set default view
-            CurrentView = new LoginViewModel();
+            CurrentView = new LoginViewModel(this);
         }
 
+    
 
-
-        /*private bool? _isDarkTheme;
-
-        public bool? IsDarkTheme
-        {
-          get { return _isDarkTheme; }
-          set
-          {
-           _isDarkTheme = value;
-           OnPropertyChanged();
-          }
-        }*/
 
 
 

@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Library;
+using project_library.MVVM.ViewModel;
+
 
 namespace project_library.MVVM.View
 {
@@ -27,8 +30,17 @@ namespace project_library.MVVM.View
 
         private void changeAmmount_Click(object sender, RoutedEventArgs e)
         {
-            ChangeAmmountWindow changAmm = new ChangeAmmountWindow();
-            changAmm.Show();
+            // Get the SelectedBook from the DataContext (BookDetailViewModel)
+            if (DataContext is BookDetailViewModel viewModel && viewModel.SelectedBook != null)
+            {
+                // Pass the SelectedBook to the ChangeAmmountWindow
+                ChangeAmmountWindow changAmm = new ChangeAmmountWindow(viewModel.SelectedBook);
+                changAmm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No book is selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

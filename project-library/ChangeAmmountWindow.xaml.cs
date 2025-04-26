@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library;
+using project_library.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,16 @@ namespace project_library
     /// </summary>
     public partial class ChangeAmmountWindow : Window
     {
-        public ChangeAmmountWindow()
+        public ChangeAmmountWindow(Books selectedBook)
         {
             InitializeComponent();
+            // Set the DataContext to the ViewModel
+            DataContext = new ChangeAmmountWindowViewModel(selectedBook);
         }
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Confirm button clicked!");
         }
     }
 }

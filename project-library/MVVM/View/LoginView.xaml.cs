@@ -24,7 +24,12 @@ namespace project_library.MVVM.View
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel();
+            
+        }
+        public LoginView(MainViewModel mainViewModel)
+        {
+            InitializeComponent();
+            DataContext = new LoginViewModel(mainViewModel);
         }
 
         private void localModeBtn_Click(object sender, RoutedEventArgs e)
