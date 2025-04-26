@@ -24,19 +24,19 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="10" Width="175" Height="280">
-                            <StackPanel>
-                                <Border Width="160" Height="200" CornerRadius="5" Margin="5">
-                                    <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="1"/>
-                                    </Border.Effect>
-                                    <Border.Background>
-                                        <ImageBrush ImageSource="{Binding Image}"/>
-                                    </Border.Background>
-                                </Border>
-                                <TextBlock Margin="5" Text="{Binding Cim}" Foreground="white" FontSize="25"/>
-                                <TextBlock Margin="5" Text="{Binding Visszaadhatarido}" Foreground="White"/>
-                            </StackPanel>
-                        </Border>
+                                <StackPanel>
+                                    <Border Width="160" Height="200" CornerRadius="5" Margin="5">
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="1"/>
+                                        </Border.Effect>
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Image}"/>
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock Margin="5" Text="{Binding Cim}" Foreground="white" FontSize="25"/>
+                                    <TextBlock Margin="5" Text="{Binding Visszaadhatarido}" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>

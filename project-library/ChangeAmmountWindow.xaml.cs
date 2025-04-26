@@ -10,25 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace project_library.MVVM.View
+namespace project_library
 {
     /// <summary>
-    /// Interaction logic for BookDetailView.xaml
+    /// Interaction logic for ChangeAmmountWindow.xaml
     /// </summary>
-    public partial class BookDetailView : UserControl
+    public partial class ChangeAmmountWindow : Window
     {
-        public BookDetailView()
+        public ChangeAmmountWindow()
         {
             InitializeComponent();
         }
 
-        private void changeAmmount_Click(object sender, RoutedEventArgs e)
+        private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            ChangeAmmountWindow changAmm = new ChangeAmmountWindow();
-            changAmm.Show();
+
         }
     }
 }
