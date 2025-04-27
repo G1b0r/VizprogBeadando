@@ -90,6 +90,12 @@ namespace project_library.MVVM.ViewModel
                         IsLoginSuccessful = true;
                         ErrorMessage = string.Empty;
 
+                        // Set the current user in MainViewModel
+                        _mainViewModel.CurrentUser = user;
+
+                        // Set IsLoggedIn to true
+                        _mainViewModel.IsLoggedIn = true;
+
                         // Navigate to HomeView
                         _mainViewModel.CurrentView = new HomeViewModel(_mainViewModel);
                     }

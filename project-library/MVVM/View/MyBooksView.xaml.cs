@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_library.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace project_library.MVVM.View
         public MyBooksView()
         {
             InitializeComponent();
+        }
+
+        public MyBooksView(MainViewModel mainViewModel)
+        {
+            InitializeComponent();
+            DataContext = new MyBooksViewModel(mainViewModel);
         }
     }
 }

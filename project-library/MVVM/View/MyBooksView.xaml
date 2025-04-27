@@ -30,11 +30,12 @@
                                             <DropShadowEffect ShadowDepth="1"/>
                                         </Border.Effect>
                                         <Border.Background>
-                                            <ImageBrush ImageSource="{Binding Image}"/>
+                                            <ImageBrush ImageSource="{Binding pic_name}"/>
                                         </Border.Background>
                                     </Border>
-                                    <TextBlock Margin="5" Text="{Binding Cim}" Foreground="white" FontSize="25"/>
-                                    <TextBlock Margin="5" Text="{Binding Visszaadhatarido}" Foreground="White"/>
+                                    <TextBlock Margin="5" Text="{Binding title}" Foreground="white" FontSize="25"/>
+                                    <TextBlock Margin="5" Text="{Binding genre}" Foreground="White"/>
+                                    <Button Content="Return" Command="{Binding DataContext.ReturnBookCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="5"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -47,7 +48,7 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
-            
-            
+
+
     </Grid>
 </UserControl>

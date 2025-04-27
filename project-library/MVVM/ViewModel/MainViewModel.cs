@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using project_library.Core;
 using project_library.MVVM.View;
+using Library;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -14,6 +15,8 @@ namespace project_library.MVVM.ViewModel
 
         private object _currentView;
         private readonly Stack<object> _navigationStack = new Stack<object>();
+        private bool _isLoggedIn;
+        private Members _currentUser; // Add this property
 
         public object CurrentView
         {
@@ -24,7 +27,25 @@ namespace project_library.MVVM.ViewModel
                 OnPropertyChanged(); 
             }
         }
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set
+            {
+                _isLoggedIn = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public Members CurrentUser // Add this property
+        {
+            get { return _currentUser; }
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand LoginViewCommand { get; }
         public ICommand RegisterViewCommand { get; }
@@ -35,6 +56,7 @@ namespace project_library.MVVM.ViewModel
 
         public MainViewModel()
         {
+            _isLoggedIn = false; // Initially, the user is not logged in
             _currentView = null!; // Suppress warning for non-nullable field
             GoBackCommand = null!; // Suppress warning for non-nullable property
 
@@ -42,8 +64,8 @@ namespace project_library.MVVM.ViewModel
             // Initialize commands
             LoginViewCommand = new RelayCommand(o => CurrentView = new LoginViewModel(this));
             RegisterViewCommand = new RelayCommand(o => CurrentView = new RegisterViewModel());
-            HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this));
-            MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel());
+            HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this), o => IsLoggedIn);
+            MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel(this), o => IsLoggedIn);
             BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
 
             // Set default view

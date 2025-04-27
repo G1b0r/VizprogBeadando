@@ -8,6 +8,7 @@ using Library;
 using Microsoft.EntityFrameworkCore;
 using project_library.Core;
 using System.Windows.Input;
+using System.Windows;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -50,6 +51,7 @@ namespace project_library.MVVM.ViewModel
 
         public ICommand GoBackCommand { get; }
         public ICommand ChangeAmountCommand { get; }
+        public ICommand TakeBookOutCommand { get; }
 
         public BookDetailViewModel(Books selectedBook, MainViewModel mainViewModel)
         {
@@ -57,6 +59,7 @@ namespace project_library.MVVM.ViewModel
             _mainViewModel = mainViewModel;
             GoBackCommand = new RelayCommand(o => _mainViewModel.CurrentView = new HomeViewModel(_mainViewModel));
             ChangeAmountCommand = new RelayCommand(o => OpenChangeAmountWindow());
+            TakeBookOutCommand = new RelayCommand(async o => await TakeBookOut());
             LoadAuthors();
             LoadAvailableCopies();
         }
@@ -89,8 +92,84 @@ namespace project_library.MVVM.ViewModel
         {
             // Pass the selected book to the ChangeAmmountWindow
             var changeAmountWindow = new ChangeAmmountWindow(SelectedBook);
+
+            // Attach a Closed event handler to refresh AvailableCopies
+            changeAmountWindow.Closed += (s, e) =>
+            {
+                RefreshAvailableCopies();
+            };
+
             changeAmountWindow.ShowDialog();
         }
+
+
+        public async void RefreshAvailableCopies()
+        {
+            using (var dbContext = new LibraryDbContext())
+            {
+                AvailableCopies = await dbContext.Books
+                    .Where(b => b.title == SelectedBook.title &&
+                                b.summary == SelectedBook.summary &&
+                                b.availability == true &&
+                                b.deleted == false)
+                    .CountAsync();
+
+                OnPropertyChanged(nameof(AvailableCopies));
+            }
+        }
+
+        private async Task TakeBookOut()
+        {
+            try
+            {
+                using (var dbContext = new LibraryDbContext())
+                {
+                    // Find a book with availability = true and deleted = false
+                    var bookToTakeOut = await dbContext.Books
+                        .FirstOrDefaultAsync(b => b.title == SelectedBook.title &&
+                                                  b.summary == SelectedBook.summary &&
+                                                  b.availability == true &&
+                                                  b.deleted == false);
+
+                    if (bookToTakeOut == null)
+                    {
+                        MessageBox.Show("No available copies of this book.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    // Get the logged-in user's member_id
+                    var loggedInUser = _mainViewModel.CurrentUser;
+                    if (loggedInUser == null)
+                    {
+                        MessageBox.Show("User not found. Please log in again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    // Create a new transaction
+                    var transaction = new Transactions
+                    {
+                        book_id = bookToTakeOut.book_id,
+                        member_id = loggedInUser.member_id,
+                        borrow_date = DateTime.Now // Set the borrow date to the current date
+                    };
+
+                    dbContext.Transactions.Add(transaction);
+
+                    // Update the book's availability
+                    bookToTakeOut.availability = false;
+
+                    // Save changes to the database
+                    await dbContext.SaveChangesAsync();
+
+                    MessageBox.Show("Book successfully taken out!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 
 }

@@ -152,7 +152,7 @@ namespace Library
             modelBuilder.Entity<Transactions>().ToTable(@"Transactions", @"dbo");
             modelBuilder.Entity<Transactions>().Property(x => x.transaction_id).HasColumnName(@"transaction_id").IsRequired().ValueGeneratedOnAdd();
             modelBuilder.Entity<Transactions>().Property(x => x.borrow_date).HasColumnName(@"borrow_date").IsRequired().ValueGeneratedNever();
-            modelBuilder.Entity<Transactions>().Property(x => x.return_date).HasColumnName(@"return_date").IsRequired().ValueGeneratedNever();
+            modelBuilder.Entity<Transactions>().Property(x => x.return_date).HasColumnName(@"return_date").ValueGeneratedNever();
             modelBuilder.Entity<Transactions>().Property(x => x.book_id).HasColumnName(@"book_id").ValueGeneratedNever();
             modelBuilder.Entity<Transactions>().Property(x => x.member_id).HasColumnName(@"member_id").ValueGeneratedNever();
             modelBuilder.Entity<Transactions>().HasKey(@"transaction_id");

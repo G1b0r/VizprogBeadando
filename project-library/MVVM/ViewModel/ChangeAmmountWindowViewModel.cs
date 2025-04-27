@@ -27,7 +27,7 @@ namespace project_library.MVVM.ViewModel
             LoadCurrentAmount();
         }
 
-        private async void LoadCurrentAmount()
+        public async void LoadCurrentAmount()
         {
             using (var dbContext = new LibraryDbContext())
             {

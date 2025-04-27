@@ -13,7 +13,7 @@
             <TextBlock Text="Current ammount of book avaible:" Foreground="Black" HorizontalAlignment="Center" Margin="5"/>
             <TextBlock Text="{Binding CurrentAmount}" Margin="5" Foreground="Black"/>
             <TextBlock Text="Please enter new ammount:" Foreground="Black" HorizontalAlignment="Center" Margin="5"/>
-            <TextBox x:Name="newAmmountTxt" Background="LightGray" Width="100" Margin="5"/>
+            <TextBox x:Name="newAmmountTxt" Background="LightGray" Width="100" Margin="5" PreviewTextInput="newAmmountTxt_PreviewTextInput"/>
             <Button x:Name="btnConfirm" Content="Confirm" Margin="5" Click="btnConfirm_Click" Background="LightGray" Width="100"/>
         </StackPanel>
     </Grid>

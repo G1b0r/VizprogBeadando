@@ -75,8 +75,7 @@
             </StackPanel>
             <!-- Admin Features -->
             <StackPanel Visibility="{Binding IsAdmin}">
-                <Button Visibility="{Binding IsDeleted}" Command="{Binding MakeVisibleCommand}" x:Name="makeVisible" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Content="Enable" Width="90" FontSize="13" />
-                <Button Visibility="{Binding IsDeletedInvert}" Command="{Binding MakeInvisibleCommand}" x:Name="makeInvisible" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Content="Disable" Width="90" FontSize="13" />
+                <Button x:Name="deleteButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Content="Delete" Width="90" FontSize="13" Command="{Binding DeleteCommand}" />
                 <Button x:Name="changeAmount" HorizontalAlignment="Center" Content="Amount" Width="90" Margin="5" Command="{Binding ChangeAmountCommand}" />
             </StackPanel>
         </StackPanel>
