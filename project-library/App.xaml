@@ -33,6 +33,9 @@
             <DataTemplate DataType="{x:Type viewModel:BookDetailViewModel}">
                 <view:BookDetailView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DiscoverViewModel}">
+                <view:DiscoverView/>
+            </DataTemplate>
             
         </ResourceDictionary>
     </Application.Resources>

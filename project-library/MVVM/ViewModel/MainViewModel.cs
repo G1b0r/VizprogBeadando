@@ -32,6 +32,7 @@ namespace project_library.MVVM.ViewModel
         public ICommand MyBooksViewCommand { get; }
         public ICommand BookDetailViewCommand { get; }
         public ICommand GoBackCommand { get; }
+        public ICommand DiscoverViewCommand { get; }
 
         public MainViewModel()
         {
@@ -45,6 +46,8 @@ namespace project_library.MVVM.ViewModel
             HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this));
             MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel());
             BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
+            DiscoverViewCommand = new RelayCommand(o => CurrentView = new DiscoverViewModel();
+            
 
             // Set default view
             CurrentView = new LoginViewModel(this);
