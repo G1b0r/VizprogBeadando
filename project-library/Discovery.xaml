@@ -50,7 +50,7 @@
                 <StackPanel Grid.Row="1">
                     <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285"/>
                     <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
-                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285"/>
+                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285"/>
                     <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}"/>
                 </StackPanel>
 
