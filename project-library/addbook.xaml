@@ -1,0 +1,44 @@
+﻿<Window x:Class="project_library.addbook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project_library"
+        mc:Ignorable="d"
+        Title="ChangeAmmountWindow" Height="500" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter title: " VerticalAlignment="Center"/>
+                <TextBox x:Name="newTitle" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter author1: " VerticalAlignment="Center"/>
+                <TextBox x:Name="author1" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter author2: " VerticalAlignment="Center"/>
+                <TextBox x:Name="author2" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter author3: " VerticalAlignment="Center"/>
+                <TextBox x:Name="author3" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter category: " VerticalAlignment="Center"/>
+                <TextBox x:Name="category" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter release date: " VerticalAlignment="Center"/>
+                <TextBox x:Name="release_date" Background="LightGray" Width="100" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter description: " VerticalAlignment="Center"/>
+                <TextBox x:Name="desc" Background="LightGray" Width="250" Height="150" Margin="5"/>
+            </StackPanel>
+            <Button x:Name="pic_link" Content="Attach cover picture" Width="200"/>
+            <Button x:Name="enter" Content="Add to library" Width="150" Margin="20"/>
+        </StackPanel>
+    </Grid>
+</Window>

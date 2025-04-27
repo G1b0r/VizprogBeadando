@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="project_library.MVVM.View.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:project_library.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="addBookBtn" Content="Add book" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"/>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="20 0">
+                <ItemsControl x:Name="events" ItemsSource="{Binding events}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10" Width="175" Height="280">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Width="50">
+                                        <TextBlock Margin="5" Text="{Binding event_level}" Foreground="white"/>
+                                        <TextBlock Margin="5" Text="{Binding event_time}" Foreground="white"/>
+                                    </StackPanel>
+                                    <TextBlock Margin="5" Text="{Binding event_desc}" Foreground="white"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
