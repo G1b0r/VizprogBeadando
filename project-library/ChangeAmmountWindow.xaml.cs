@@ -61,18 +61,36 @@ namespace project_library
                         };
 
                         dbContext.Books.Add(newBook);
+                        await dbContext.SaveChangesAsync(); // Save to generate book_id
+
+                        // Add corresponding author-book relationships
+                        var authorBooks = dbContext.AuthorBooks
+                            .Where(ab => ab.book_id == _selectedBook.book_id)
+                            .ToList();
+
+                        foreach (var authorBook in authorBooks)
+                        {
+                            var newAuthorBook = new AuthorBook
+                            {
+                                author_id = authorBook.author_id,
+                                book_id = newBook.book_id,
+                                author_order = authorBook.author_order
+                            };
+
+                            dbContext.AuthorBooks.Add(newAuthorBook);
+                        }
+
+                        // Save changes to the database
+                        await dbContext.SaveChangesAsync();
                     }
+                    if (DataContext is ChangeAmmountWindowViewModel viewModel)
+                    {
+                        viewModel.LoadCurrentAmount();
+                    }
+                    MessageBox.Show("Books and corresponding author relationships added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                    // Save changes to the database
-                    await dbContext.SaveChangesAsync();
-                }
-                if (DataContext is ChangeAmmountWindowViewModel viewModel)
-                {
-                    viewModel.LoadCurrentAmount();
-                }
 
-                
-                
+                }
             }
             else
             {

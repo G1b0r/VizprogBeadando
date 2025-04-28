@@ -24,5 +24,14 @@ namespace project_library.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void addBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Create an instance of the addbook window
+            var addBookWindow = new addbook();
+
+            // Show the window as a dialog
+            addBookWindow.ShowDialog();
+        }
     }
 }

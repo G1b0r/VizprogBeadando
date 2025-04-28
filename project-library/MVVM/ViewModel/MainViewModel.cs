@@ -56,6 +56,9 @@ namespace project_library.MVVM.ViewModel
         public ICommand DiscoverViewCommand { get; }
         public ICommand SearchViewCommand { get; }
         public ICommand AdminViewCommand { get; }
+        public ICommand LogoutCommand { get; }
+
+
 
         public MainViewModel()
         {
@@ -70,17 +73,27 @@ namespace project_library.MVVM.ViewModel
             HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this), o => IsLoggedIn);
             MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel(this), o => IsLoggedIn);
             BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
-            DiscoverViewCommand = new RelayCommand(o => CurrentView = new DiscoverViewModel());
+            DiscoverViewCommand = new RelayCommand(o => CurrentView = new DiscoverViewModel(this));
             SearchViewCommand = new RelayCommand(o => CurrentView = new SearchViewModel());
             AdminViewCommand = new RelayCommand(o => CurrentView = new AdminViewModel());
+            LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
-            
+
 
             // Set default view
             CurrentView = new LoginViewModel(this);
         }
+        private void ExecuteLogoutCommand(object parameter)
+        {
+            // Clear the current user session
+            CurrentUser = null;
+            IsLoggedIn = false;
 
-    
+            // Navigate to the LoginViewModel
+            CurrentView = new LoginViewModel(this);
+        }
+
+
 
 
 

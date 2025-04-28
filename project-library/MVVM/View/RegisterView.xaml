@@ -21,7 +21,7 @@
             <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFullName" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Full Name" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             <!-- Phone Number Input -->
-            <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtPhoneNumber" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Phone Number"  PreviewTextInput="PhoneNumber_PreviewTextInput" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtPhoneNumber" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Email Number"  PreviewTextInput="PhoneNumber_PreviewTextInput" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             <!-- Password Input -->
             <PasswordBox Margin="0 15 0 0" x:Name="txtPassword" PasswordChanged="PasswordBox_PasswordChanged" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Password" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>

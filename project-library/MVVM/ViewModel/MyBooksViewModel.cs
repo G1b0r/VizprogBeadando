@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using Library;
 using Microsoft.EntityFrameworkCore;
+using static project_library.MVVM.ViewModel.MyBooksViewModel;
 
 
 namespace project_library.MVVM.ViewModel
@@ -16,9 +17,11 @@ namespace project_library.MVVM.ViewModel
     public class MyBooksViewModel : ObservableObject
     {
         private readonly MainViewModel _mainViewModel;
-        private ObservableCollection<Books> _kivettLista;
+        private ObservableCollection<BorrowedBook> _kivettLista;
 
-        public ObservableCollection<Books> kivett_lista
+       
+
+        public ObservableCollection<BorrowedBook> kivett_lista
         {
             get { return _kivettLista; }
             set
@@ -28,13 +31,15 @@ namespace project_library.MVVM.ViewModel
             }
         }
 
+        
         public ICommand ReturnBookCommand { get; }
 
+       
         public MyBooksViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel;
-            kivett_lista = new ObservableCollection<Books>();
-            ReturnBookCommand = new RelayCommand(async book => await ReturnBook(book as Books));
+            kivett_lista = new ObservableCollection<BorrowedBook>();
+            ReturnBookCommand = new RelayCommand(async book => await ReturnBook(book as BorrowedBook));
             LoadTakenOutBooks();
         }
 
@@ -51,16 +56,24 @@ namespace project_library.MVVM.ViewModel
                         MessageBox.Show("No user is logged in.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
+
                     var books = await dbContext.Transactions
-                        .Where(t => t.member_id == userId && t.return_date == null)
-                        .Select(t => t.Books2)
+                        .Where(t => t.member_id == userId)
+                        .Select(t => new BorrowedBook
+                        {
+                            Book = t.Books2,
+                            BorrowDate = t.borrow_date,
+                            ReturnDate = t.return_date
+                        })
                         .ToListAsync();
                     if (books.Count == 0)
                     {
                         MessageBox.Show("No books found for the logged-in user.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
 
-                    kivett_lista = new ObservableCollection<Books>(books);
+                    var sortedBooks = books.OrderByDescending(b => b.CanBeReturned).ToList();
+
+                    kivett_lista = new ObservableCollection<BorrowedBook>(sortedBooks);
                 }
             }
             catch (Exception ex)
@@ -69,7 +82,7 @@ namespace project_library.MVVM.ViewModel
             }
         }
 
-        private async Task ReturnBook(Books book)
+        private async Task ReturnBook(BorrowedBook borrowedBook)
         {
             try
             {
@@ -77,7 +90,9 @@ namespace project_library.MVVM.ViewModel
                 {
                     // Find the transaction for the book
                     var transaction = await dbContext.Transactions
-                        .FirstOrDefaultAsync(t => t.book_id == book.book_id && t.member_id == _mainViewModel.CurrentUser.member_id && t.return_date == null);
+                        .FirstOrDefaultAsync(t => t.book_id == borrowedBook.Book.book_id &&
+                                          t.member_id == _mainViewModel.CurrentUser.member_id &&
+                                          t.return_date == null);
 
                     if (transaction == null)
                     {
@@ -89,17 +104,17 @@ namespace project_library.MVVM.ViewModel
                     transaction.return_date = DateTime.Now;
 
                     // Update the book's availability
-                    var bookToUpdate = await dbContext.Books.FirstOrDefaultAsync(b => b.book_id == book.book_id);
+                    var bookToUpdate = await dbContext.Books.FirstOrDefaultAsync(b => b.book_id == borrowedBook.Book.book_id);
                     if (bookToUpdate != null)
                     {
                         bookToUpdate.availability = true;
                     }
 
-                    // Save changes to the database
                     await dbContext.SaveChangesAsync();
 
-                    // Remove the book from the list
-                    kivett_lista.Remove(book);
+                    LoadTakenOutBooks();
+
+                    kivett_lista.Remove(borrowedBook);
 
                     MessageBox.Show("Book successfully returned!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -108,6 +123,14 @@ namespace project_library.MVVM.ViewModel
             {
                 MessageBox.Show($"An error occurred while returning the book: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+        public class BorrowedBook
+        {
+            public Books Book { get; set; }
+            public DateTime BorrowDate { get; set; }
+            public DateTime? ReturnDate { get; set; }
+            public DateTime ReturnDeadline => BorrowDate.AddDays(14); // 2 weeks after borrow_date
+            public bool CanBeReturned => ReturnDate == null; // Button visibility logic
         }
     }
 

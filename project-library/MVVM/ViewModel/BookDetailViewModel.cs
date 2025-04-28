@@ -48,6 +48,17 @@ namespace project_library.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        public string FormattedAuthors
+        {
+            get
+            {
+                if (Authors == null || !Authors.Any())
+                    return "Unknown Author";
+
+                // Join author names with a separator (e.g., ", ")
+                return string.Join(", ", Authors.Select(a => a.name));
+            }
+        }
 
         public ICommand GoBackCommand { get; }
         public ICommand ChangeAmountCommand { get; }
@@ -74,6 +85,7 @@ namespace project_library.MVVM.ViewModel
                     .ToListAsync();
 
                 Authors = new ObservableCollection<Authors>(authors);
+                OnPropertyChanged(nameof(FormattedAuthors));
             }
         }
         private async void LoadAvailableCopies()

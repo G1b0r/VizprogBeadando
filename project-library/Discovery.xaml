@@ -28,7 +28,7 @@
             <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25">
                 <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock VerticalAlignment="Center" Text="DarkMode"/>
-                    <Button ToolTip="Log out?" Margin="0 8 0 0" Content="Log out"/>
+                    <Button ToolTip="Log out?" Margin="0 8 0 0" Content="Log out" Command="{Binding LogoutCommand}" />
                     <Button ToolTip="Having trouble logging in?" Margin="0 8 0 0" Content="Help Me"/>
                     <Button x:Name="btn_exit" ToolTip="Close Appliaction" Content="Exit Application" Click="exitApp"/>
                 </StackPanel>

@@ -13,7 +13,7 @@ namespace project_library.MVVM.ViewModel
         private string _username;
         private string _password;
         private string _name;
-        private string _phoneNumber;
+        private string _email;
         private string _errorMessage;
         private string _successMessage;
 
@@ -47,12 +47,12 @@ namespace project_library.MVVM.ViewModel
             }
         }
 
-        public string PhoneNumber
+        public string Email
         {
-            get { return _phoneNumber; }
+            get { return _email; }
             set
             {
-                _phoneNumber = value;
+                _email = value;
                 OnPropertyChanged();
             }
         }
@@ -114,13 +114,8 @@ namespace project_library.MVVM.ViewModel
                         return;
                     }
 
-                    // Validate phone number
-                    if (!int.TryParse(PhoneNumber, out int parsedPhoneNumber))
-                    {
-                        ErrorMessage = "Phone number must be a valid number.";
-                        SuccessMessage = string.Empty;
-                        return;
-                    }
+                    
+                
 
                     // Create a new member
                     var newMember = new Members
@@ -128,7 +123,7 @@ namespace project_library.MVVM.ViewModel
                         username = Username,
                         password = Password,
                         name = Name,
-                        phone_number = parsedPhoneNumber,
+                        e_mail = Email,
                         is_admin = false // Admin is always false
                     };
 

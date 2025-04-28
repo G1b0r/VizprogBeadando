@@ -3,57 +3,72 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:project_library"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="ChangeAmmountWindow" Height="500" Width="600"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter title: " VerticalAlignment="Center"/>
-                <TextBox x:Name="newTitle" Background="LightGray" Width="100" Margin="5"/>
+        Title="Add Book" Height="600" Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#2C2F33">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <StackPanel>
+                <!-- Title -->
+                <TextBlock Text="Add a New Book" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <!-- Title Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Title:" VerticalAlignment="Center" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter book title"/>
+
+                </StackPanel>
+
+                <!-- Authors Section -->
+                <ItemsControl ItemsSource="{Binding Authors}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Author Name"/>
+                                <TextBox Text="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Birthdate"/>
+                                <TextBox Text="{Binding Nationality, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Nationality"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="Add Author" Command="{Binding AddAuthorCommand}" Width="150" Margin="0,10,0,0" Background="#7289DA" Foreground="White" FontWeight="Bold"/>
+
+                <!-- Category Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Category:" VerticalAlignment="Center" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter category"/>
+                </StackPanel>
+
+                <!-- Release Date Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Release Date:" VerticalAlignment="Center" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding ReleaseDate, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter release date"/>
+                </StackPanel>
+
+                <!-- Publisher Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Publisher:" VerticalAlignment="Center" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter publisher name"/>
+                </StackPanel>
+
+                <!-- Description Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Description:" VerticalAlignment="Top" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="400" Height="100" Margin="5" TextWrapping="Wrap" AcceptsReturn="True" materialDesign:HintAssist.Hint="Enter description"/>
+                </StackPanel>
+
+                <!-- Cover Pic Link Input -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <TextBlock Text="Cover Pic Link:" VerticalAlignment="Center" Foreground="White" Width="120"/>
+                    <TextBox Text="{Binding CoverPicLink, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="400" Margin="5" materialDesign:HintAssist.Hint="Enter cover picture link"/>
+                </StackPanel>
+
+                <!-- Add Button -->
+                <Button Content="Add to Library" Command="{Binding SaveBookCommand}" Width="200" Height="40" Margin="20,20,20,0" Background="#7289DA" Foreground="White" FontWeight="Bold"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter author1: " VerticalAlignment="Center"/>
-                <TextBox x:Name="author1" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
-                <TextBox x:Name="birthdate1" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
-                <TextBox x:Name="nationality1" Background="LightGray" Width="100" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter author2: " VerticalAlignment="Center"/>
-                <TextBox x:Name="author2" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
-                <TextBox x:Name="birthdate2" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
-                <TextBox x:Name="nationality2" Background="LightGray" Width="100" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter author3: " VerticalAlignment="Center"/>
-                <TextBox x:Name="author3" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
-                <TextBox x:Name="birthdate3" Background="LightGray" Width="100" Margin="5"/>
-                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
-                <TextBox x:Name="nationality3" Background="LightGray" Width="100" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter category: " VerticalAlignment="Center"/>
-                <TextBox x:Name="category" Background="LightGray" Width="100" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter release date: " VerticalAlignment="Center"/>
-                <TextBox x:Name="release_date" Background="LightGray" Width="100" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter description: " VerticalAlignment="Center"/>
-                <TextBox x:Name="desc" Background="LightGray" Width="250" Height="150" Margin="5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Enter cover pic link.  " VerticalAlignment="Center"/>
-                <TextBox x:Name="pic_link" Background="LightGray" Width="250" Margin="5"/>
-            </StackPanel>
-            <Button x:Name="enter" Content="Add to library" Width="150" Margin="20"/>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
+

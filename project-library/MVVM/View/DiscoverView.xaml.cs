@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_library.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace project_library.MVVM.View
         public DiscoverView()
         {
             InitializeComponent();
+        }
+        public DiscoverView(MainViewModel mainViewModel)
+        {
+            InitializeComponent();
+            DataContext = new DiscoverViewModel(mainViewModel);
         }
     }
 }
