@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_library"
         mc:Ignorable="d"
-        Title="ChangeAmmountWindow" Height="500" Width="500"
+        Title="ChangeAmmountWindow" Height="500" Width="600"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
@@ -16,14 +16,26 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Enter author1: " VerticalAlignment="Center"/>
                 <TextBox x:Name="author1" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
+                <TextBox x:Name="birthdate1" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
+                <TextBox x:Name="nationality1" Background="LightGray" Width="100" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Enter author2: " VerticalAlignment="Center"/>
                 <TextBox x:Name="author2" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
+                <TextBox x:Name="birthdate2" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
+                <TextBox x:Name="nationality2" Background="LightGray" Width="100" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Enter author3: " VerticalAlignment="Center"/>
                 <TextBox x:Name="author3" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="birthdate: " VerticalAlignment="Center"/>
+                <TextBox x:Name="birthdate3" Background="LightGray" Width="100" Margin="5"/>
+                <TextBlock Text="Nationality: " VerticalAlignment="Center"/>
+                <TextBox x:Name="nationality3" Background="LightGray" Width="100" Margin="5"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Enter category: " VerticalAlignment="Center"/>
@@ -37,7 +49,10 @@
                 <TextBlock Text="Enter description: " VerticalAlignment="Center"/>
                 <TextBox x:Name="desc" Background="LightGray" Width="250" Height="150" Margin="5"/>
             </StackPanel>
-            <Button x:Name="pic_link" Content="Attach cover picture" Width="200"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Enter cover pic link.  " VerticalAlignment="Center"/>
+                <TextBox x:Name="pic_link" Background="LightGray" Width="250" Margin="5"/>
+            </StackPanel>
             <Button x:Name="enter" Content="Add to library" Width="150" Margin="20"/>
         </StackPanel>
     </Grid>
