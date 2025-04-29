@@ -8,7 +8,7 @@
             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Register" Foreground="White" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,20"/>
+        <TextBlock Text="Register" Foreground="#fcf6f5" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,20"/>
         <Button x:Name="localModeBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="180" FontSize="12" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
         <StackPanel>
             <TextBlock Margin="0 30 0 5" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Welcome to our Library"/>

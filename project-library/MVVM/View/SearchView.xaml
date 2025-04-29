@@ -19,19 +19,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Search" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
+        <TextBlock Text="Search" Foreground="#fcf6f5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Title:" Foreground="White" FontSize="15" Margin="5"/>
+            <TextBlock Text="Title:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
             <TextBox x:Name="titleInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
             
-            <TextBlock Text="Author Name:" Foreground="White" FontSize="15" Margin="5"/>
+            <TextBlock Text="Author Name:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
             <TextBox x:Name="authorNameInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
             
-            <TextBlock Text="Release year" Foreground="White" FontSize="15" Margin="5"/>
+            <TextBlock Text="Release year" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
             <TextBox Text="Before" x:Name="releasebeforeInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
             <TextBox Text="After" x:Name="releaseafterInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
 
-            <TextBlock Text="Category" Foreground="White" FontSize="15" Margin="5"/>
+            <TextBlock Text="Category" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
             <TextBox x:Name="categoryInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
 
 
@@ -54,7 +54,7 @@
                                             <ImageBrush ImageSource="{Binding Image}"/>
                                         </Border.Background>
                                     </Border>
-                                    <TextBlock Margin="5" Text="{Binding Cim}" Foreground="white" FontSize="25"/>
+                                    <TextBlock Margin="5" Text="{Binding Cim}" Foreground="#fcf6f5" FontSize="25"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
