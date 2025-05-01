@@ -22,26 +22,26 @@
         <TextBlock Text="Search" Foreground="#fcf6f5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Title:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="titleInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            <TextBox x:Name="titleInput" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
             
             <TextBlock Text="Author Name:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="authorNameInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            <TextBox x:Name="authorNameInput" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
             
             <TextBlock Text="Release year" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox Text="Before" x:Name="releasebeforeInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
-            <TextBox Text="After" x:Name="releaseafterInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            <TextBox x:Name="releasebeforeInput" Text="{Binding ReleaseBefore, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
+            <TextBox x:Name="releaseafterInput" Text="{Binding ReleaseAfter, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
 
             <TextBlock Text="Category" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="categoryInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
 
 
-            <Button x:Name="searchOkBtn" Content="Search" Margin="5"/>
+            <Button x:Name="searchOkBtn" Content="Search" Margin="5" Command="{Binding SearchCommand}"/>
         </StackPanel>
 
         <!--results go here --> 
         <ScrollViewer Grid.Row="1" Grid.Column="1">
             <StackPanel Margin="20 0">
-                <ItemsControl x:Name="randomPikks" ItemsSource="{Binding random_lsita}">
+                <ItemsControl ItemsSource="{Binding SearchResults}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="10" Width="175" Height="280">
@@ -51,10 +51,13 @@
                                             <DropShadowEffect ShadowDepth="1"/>
                                         </Border.Effect>
                                         <Border.Background>
-                                            <ImageBrush ImageSource="{Binding Image}"/>
+                                            <ImageBrush ImageSource="{Binding CoverImagePath}"/>
                                         </Border.Background>
                                     </Border>
-                                    <TextBlock Margin="5" Text="{Binding Cim}" Foreground="#fcf6f5" FontSize="25"/>
+                                    <TextBlock Margin="5" Text="{Binding Title}" Foreground="#fcf6f5" FontSize="25"/>
+                                    <TextBlock Margin="5" Text="{Binding Author}" Foreground="#fcf6f5" FontSize="15"/>
+                                    <TextBlock Margin="5" Text="{Binding Genre}" Foreground="#fcf6f5" FontSize="15"/>
+                                    <TextBlock Margin="5" Text="{Binding PublishedYear}" Foreground="#fcf6f5" FontSize="15"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

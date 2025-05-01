@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Secondary/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="/Theme/TextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/SearchParamTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
