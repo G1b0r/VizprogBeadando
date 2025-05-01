@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_library.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace project_library.MVVM.View
         public AdminView()
         {
             InitializeComponent();
+            DataContext = new AdminViewModel();
         }
 
         private void addBookBtn_Click(object sender, RoutedEventArgs e)
@@ -33,5 +35,7 @@ namespace project_library.MVVM.View
             // Show the window as a dialog
             addBookWindow.ShowDialog();
         }
+
+
     }
 }
