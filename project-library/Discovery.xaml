@@ -55,9 +55,9 @@
                     <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#fcf6f5"/>
                 </StackPanel>
 
-                <TextBox Width="300" Height="75" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBox}" Foreground="#fcf6f5" Background="#3d275c"/>
+                <!-- <TextBox Width="300" Height="75" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBox}" Foreground="#fcf6f5" Background="#3d275c"/> -->
 
-                <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
+                <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" Content="{Binding CurrentView}"/>
             </Grid>
 
             
