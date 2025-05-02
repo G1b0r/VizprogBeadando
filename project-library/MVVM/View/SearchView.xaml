@@ -31,6 +31,12 @@
             <TextBox x:Name="releasebeforeInput" Text="{Binding ReleaseBefore, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
             <TextBox x:Name="releaseafterInput" Text="{Binding ReleaseAfter, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
 
+            <TextBox Text="Before" x:Name="releasebeforeInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            <TextBox Text="After" x:Name="releaseafterInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+            
+            <TextBlock Text="Publisher" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
+            <TextBox x:Name="publisherInput" Background="LightGray" Foreground="Black" Margin="5" Style="{StaticResource SearchParamTheme}"/>
+
             <TextBlock Text="Category" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
             <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
 

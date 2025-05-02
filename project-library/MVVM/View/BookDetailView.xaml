@@ -75,7 +75,7 @@
             </StackPanel>
             <!-- Admin Features -->
             <StackPanel Visibility="{Binding IsAdmin}">
-                <Button x:Name="deleteButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Content="Delete" Width="90" FontSize="13" Command="{Binding DeleteCommand}" />
+                <!--<Button x:Name="deleteButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5" Content="Delete" Width="90" FontSize="13" Command="{Binding DeleteCommand}" /> -->
                 <Button x:Name="changeAmount" HorizontalAlignment="Center" Content="Amount" Width="90" Margin="5" Command="{Binding ChangeAmountCommand}" />
             </StackPanel>
         </StackPanel>
