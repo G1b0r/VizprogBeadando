@@ -74,7 +74,7 @@ namespace project_library.MVVM.ViewModel
             MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel(this), o => IsLoggedIn);
             BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
             DiscoverViewCommand = new RelayCommand(o => CurrentView = new DiscoverViewModel(this));
-            SearchViewCommand = new RelayCommand(o => CurrentView = new SearchViewModel());
+            SearchViewCommand = new RelayCommand(o => CurrentView = new SearchViewModel(this));
             AdminViewCommand = new RelayCommand(o => CurrentView = new AdminViewModel());
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
@@ -92,7 +92,7 @@ namespace project_library.MVVM.ViewModel
             // Navigate to the LoginViewModel
             CurrentView = new LoginViewModel(this);
         }
-
+        
 
 
 

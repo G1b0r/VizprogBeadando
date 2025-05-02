@@ -24,7 +24,20 @@ namespace project_library.MVVM.View
         public SearchView()
         {
             InitializeComponent();
-            DataContext = new SearchViewModel();
+            
         }
+        public SearchView(MainViewModel mainViewModel)
+        {
+            InitializeComponent();
+            DataContext = new SearchViewModel(mainViewModel);
+        }
+        private void ListBoxItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is SearchViewModel viewModel && sender is ListBoxItem item && item.DataContext is BookSearchResult selectedBook)
+            {
+                viewModel.SelectBookCommand.Execute(selectedBook);
+            }
+        }
+
     }
 }

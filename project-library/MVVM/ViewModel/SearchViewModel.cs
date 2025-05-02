@@ -14,7 +14,10 @@ namespace project_library.MVVM.ViewModel
         private string _category;
         private string _releaseBefore;
         private string _releaseAfter;
+        private string _publisher;
+        private readonly MainViewModel _mainViewModel;
         private ObservableCollection<BookSearchResult> _searchResults;
+        private BookSearchResult _selectedBook;
 
         public string Title
         {
@@ -65,6 +68,15 @@ namespace project_library.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        public string Publisher
+        {
+            get => _publisher;
+            set
+            {
+                _publisher = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<BookSearchResult> SearchResults
         {
@@ -75,13 +87,26 @@ namespace project_library.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        public BookSearchResult SelectedBook
+        {
+            get => _selectedBook;
+            set
+            {
+                _selectedBook = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public ICommand SearchCommand { get; }
+        public ICommand SelectBookCommand { get; }
 
-        public SearchViewModel()
+        public SearchViewModel(MainViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
             SearchResults = new ObservableCollection<BookSearchResult>();
             SearchCommand = new RelayCommand(ExecuteSearch);
+            SelectBookCommand = new RelayCommand(ExecuteSelectBookCommand);
         }
 
         private void ExecuteSearch(object parameter)
@@ -128,6 +153,12 @@ namespace project_library.MVVM.ViewModel
                         Console.WriteLine($"Filtering by ReleaseAfter: {ReleaseAfter}");
                     }
 
+                    if (!string.IsNullOrWhiteSpace(Publisher))
+                    {
+                        query = query.Where(b => b.publisher.Contains(Publisher));
+                        Console.WriteLine($"Filtering by Publisher: {Publisher}");
+                    }
+
                     // Materialize the query into memory to perform grouping
                     var books = query
                         .Select(b => new
@@ -137,6 +168,7 @@ namespace project_library.MVVM.ViewModel
                             b.genre,
                             b.published_year,
                             b.pic_name,
+                            b.publisher,
                             Author = b.AuthorBooks.Select(ab => ab.Authors1.name).FirstOrDefault()
                         })
                         .ToList();
@@ -172,6 +204,30 @@ namespace project_library.MVVM.ViewModel
                 MessageBox.Show($"An error occurred while searching: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void ExecuteSelectBookCommand(object parameter)
+        {
+            if (parameter is BookSearchResult selectedBook)
+            {
+                using (var dbContext = new LibraryDbContext())
+                {
+                    // Find the corresponding Library.Books object
+                    var book = dbContext.Books
+                        .FirstOrDefault(b => b.title == selectedBook.Title && b.published_year == selectedBook.PublishedYear);
+
+                    if (book != null)
+                    {
+                        // Navigate to the BookDetailPage with the selected book
+                        var bookDetailViewModel = new BookDetailViewModel(book, _mainViewModel);
+                        _mainViewModel.CurrentView = bookDetailViewModel;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The selected book could not be found in the database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+        }
+
 
 
     }
