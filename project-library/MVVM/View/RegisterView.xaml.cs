@@ -35,10 +35,6 @@ namespace project_library.MVVM.View
                 viewModel.Password = txtPassword.Password;
             }
         }
-        private void PhoneNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            // Allow only numbers, +, *, and # symbols
-            e.Handled = !Regex.IsMatch(e.Text, @"^[0-9\+\*\#]+$");
-        }
+      
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using project_library.Utilities;
+
 
 namespace project_library.MVVM.ViewModel
 {
@@ -83,9 +85,9 @@ namespace project_library.MVVM.ViewModel
                 using (var context = new LibraryDbContext())
                 {
                     var user = context.Members
-                        .FirstOrDefault(m => m.username == Username && m.password == Password);
+                        .FirstOrDefault(m => m.username == Username);
 
-                    if (user != null)
+                    if (user != null && PasswordHasher.VerifyPassword(Password, user.password))
                     {
                         IsLoginSuccessful = true;
                         ErrorMessage = string.Empty;

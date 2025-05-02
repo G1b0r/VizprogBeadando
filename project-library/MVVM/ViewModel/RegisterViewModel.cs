@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using project_library.Utilities;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -114,14 +115,14 @@ namespace project_library.MVVM.ViewModel
                         return;
                     }
 
-                    
-                
+                    var hashedPassword = PasswordHasher.HashPassword(Password);
+
 
                     // Create a new member
                     var newMember = new Members
                     {
                         username = Username,
-                        password = Password,
+                        password = hashedPassword,
                         name = Name,
                         e_mail = Email,
                         is_admin = false // Admin is always false
