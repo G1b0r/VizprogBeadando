@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace project_library.MVVM.View
 {
@@ -25,6 +26,7 @@ namespace project_library.MVVM.View
         public DiscoverView()
         {
             InitializeComponent();
+            
         }
         public DiscoverView(MainViewModel mainViewModel)
         {
@@ -38,5 +40,6 @@ namespace project_library.MVVM.View
                 viewModel.SelectBookCommand.Execute(selectedBook);
             }
         }
+
     }
 }

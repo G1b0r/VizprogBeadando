@@ -7,7 +7,7 @@ using project_library.Core;
 
 namespace project_library.MVVM.ViewModel
 {
-    public class DiscoverViewModel : ObservableObject
+    public class DiscoverViewModel : ObservableObject, IReloadable
     {
         private readonly MainViewModel _mainViewModel;
         private ObservableCollection<Books> _uniqueBooks;
@@ -38,7 +38,7 @@ namespace project_library.MVVM.ViewModel
             {
                 // Fetch unique books based on title and summary
                 var books = await dbContext.Books
-                    .Where(b => !b.deleted)
+                    .Where(b => !b.deleted && b.availability)
                     .GroupBy(b => new { b.title, b.summary })
                     .Select(g => g.First())
                     .ToListAsync();
@@ -52,9 +52,14 @@ namespace project_library.MVVM.ViewModel
             if (parameter is Books selectedBook)
             {
                 // Navigate to the BookDetailPage with the selected book
-                var bookDetailViewModel = new BookDetailViewModel(selectedBook, _mainViewModel);
+                var bookDetailViewModel = new BookDetailViewModel(selectedBook, _mainViewModel, this);
                 _mainViewModel.CurrentView = bookDetailViewModel;
             }
+        }
+        public void Reload()
+        {
+            // Reload the unique books
+            LoadUniqueBooks();
         }
     }
 }

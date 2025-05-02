@@ -9,6 +9,7 @@ using Library;
 using project_library.Core;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using project_library.Utilities;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -55,6 +56,14 @@ namespace project_library.MVVM.ViewModel
                         book.deleted = true;
                         dbContext.SaveChanges();
                         MessageBox.Show($"Book with ID {bookId} has been marked as deleted.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                        // Log the event
+                        EventLogger.LogEvent(
+                            $"Book ID {bookId} ({book.title}) has been marked as deleted.",
+                            EventLogEntryType.Warning);
+
+                        // Refresh the event logs
+                        LoadEventLogs();
                     }
                     else
                     {
@@ -68,21 +77,29 @@ namespace project_library.MVVM.ViewModel
             }
         }
 
-        private void LoadEventLogs()
+        private async void LoadEventLogs()
         {
             EventLogs = new ObservableCollection<string>();
 
-            if (EventLog.SourceExists("LibraryApp"))
+            await Task.Run(() =>
             {
-                var eventLog = new EventLog("Application", ".", "LibraryApp");
-                foreach (EventLogEntry entry in eventLog.Entries)
+                if (EventLog.SourceExists("LibraryApp"))
                 {
-                    if (entry.Source == "LibraryApp")
+                    var eventLog = new EventLog("Application", ".", "LibraryApp");
+                    var entries = eventLog.Entries.Cast<EventLogEntry>()
+                        .Where(entry => entry.Source == "LibraryApp")
+                        .Reverse()
+                        .Take(100); // Load only the most recent 100 entries
+
+                    foreach (var entry in entries)
                     {
-                        EventLogs.Add($"{entry.TimeGenerated}: {entry.Message}");
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            EventLogs.Add($"{entry.TimeGenerated}: {entry.Message}");
+                        });
                     }
                 }
-            }
+            });
         }
     }
 }

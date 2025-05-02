@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using project_library.Core;
 using System.Windows.Input;
 using System.Windows;
+using project_library.Utilities;
+using System.Diagnostics;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -17,6 +19,7 @@ namespace project_library.MVVM.ViewModel
         private Books _selectedBook;
         private ObservableCollection<Authors> _authors;
         private readonly MainViewModel _mainViewModel;
+        private readonly ObservableObject _previousViewModel;
         private int _availableCopies;
 
         public Books SelectedBook
@@ -64,11 +67,21 @@ namespace project_library.MVVM.ViewModel
         public ICommand ChangeAmountCommand { get; }
         public ICommand TakeBookOutCommand { get; }
 
-        public BookDetailViewModel(Books selectedBook, MainViewModel mainViewModel)
+        public BookDetailViewModel(Books selectedBook, MainViewModel mainViewModel, ObservableObject previousViewModel)
         {
             SelectedBook = selectedBook;
             _mainViewModel = mainViewModel;
-            GoBackCommand = new RelayCommand(o => _mainViewModel.CurrentView = new HomeViewModel(_mainViewModel));
+            _previousViewModel = previousViewModel;
+            GoBackCommand = new RelayCommand(o =>
+            {
+                _mainViewModel.CurrentView = _previousViewModel;
+
+                // Trigger reload if the previous view model implements IReloadable
+                if (_previousViewModel is IReloadable reloadableView)
+                {
+                    reloadableView.Reload();
+                }
+            });
             ChangeAmountCommand = new RelayCommand(o => OpenChangeAmountWindow());
             TakeBookOutCommand = new RelayCommand(async o => await TakeBookOut());
             LoadAuthors();
@@ -109,6 +122,10 @@ namespace project_library.MVVM.ViewModel
             changeAmountWindow.Closed += (s, e) =>
             {
                 RefreshAvailableCopies();
+
+                EventLogger.LogEvent(
+                $"Book ID {SelectedBook.book_id} ({SelectedBook.title}) was copied. Current available copies: {AvailableCopies}.",
+                    EventLogEntryType.Information);
             };
 
             changeAmountWindow.ShowDialog();
@@ -172,6 +189,8 @@ namespace project_library.MVVM.ViewModel
 
                     // Save changes to the database
                     await dbContext.SaveChangesAsync();
+
+                    EventLogger.LogEvent($"User {loggedInUser.username} has taken out book ID {bookToTakeOut.book_id} ({bookToTakeOut.title}) on {DateTime.Now}.", EventLogEntryType.Information);
 
                     MessageBox.Show("Book successfully taken out!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }

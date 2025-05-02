@@ -25,7 +25,12 @@ namespace project_library.MVVM.ViewModel
             set 
             { 
                 _currentView = value; 
-                OnPropertyChanged(); 
+                OnPropertyChanged();
+                // Trigger reload if the new view has a Reload method
+                if (_currentView is IReloadable reloadableView)
+                {
+                    reloadableView.Reload();
+                }
             }
         }
         public bool IsLoggedIn
@@ -83,7 +88,13 @@ namespace project_library.MVVM.ViewModel
             RegisterViewCommand = new RelayCommand(o => CurrentView = new RegisterViewModel());
             HomeViewCommand = new RelayCommand(o => CurrentView = new HomeViewModel(this), o => IsLoggedIn);
             MyBooksViewCommand = new RelayCommand(o => CurrentView = new MyBooksViewModel(this), o => IsLoggedIn);
-            BookDetailViewCommand = new RelayCommand(o => CurrentView = new BookDetailViewModel(null, this));
+            BookDetailViewCommand = new RelayCommand(o =>
+            {
+                if (CurrentView is ObservableObject previousViewModel)
+                {
+                    CurrentView = new BookDetailViewModel(null, this, previousViewModel);
+                }
+            });
             DiscoverViewCommand = new RelayCommand(o => CurrentView = new DiscoverViewModel(this));
             SearchViewCommand = new RelayCommand(o => CurrentView = new SearchViewModel(this));
             AdminViewCommand = new RelayCommand(o => CurrentView = new AdminViewModel());

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Library;
 using project_library.Core;
+using project_library.Utilities;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -137,6 +139,11 @@ namespace project_library.MVVM.ViewModel
                     dbContext.Books.Add(book);
                     dbContext.SaveChanges();
 
+                    // Log the event
+                    EventLogger.LogEvent(
+                        $"New book added: ID {book.book_id}, Title: {book.title}, Category: {book.genre}, Release Year: {book.published_year}.",
+                        EventLogEntryType.Information);
+
                     // Add authors and author-book relationships
                     foreach (var (author, index) in Authors.Select((a, i) => (a, i + 1)))
                     {
@@ -166,6 +173,15 @@ namespace project_library.MVVM.ViewModel
                     }
 
                     dbContext.SaveChanges();
+
+                    // Clear the text boxes by resetting the properties
+                    Title = string.Empty;
+                    Category = string.Empty;
+                    ReleaseDate = string.Empty;
+                    Publisher = string.Empty;
+                    Description = string.Empty;
+                    CoverPicLink = string.Empty;
+                    Authors.Clear();
                 }
 
                 MessageBox.Show("Book added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);

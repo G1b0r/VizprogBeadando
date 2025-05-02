@@ -7,7 +7,7 @@ using project_library.Core;
 
 namespace project_library.MVVM.ViewModel
 {
-    public class SearchViewModel : ObservableObject
+    public class SearchViewModel : ObservableObject, IReloadable
     {
         private string _title;
         private string _authorName;
@@ -217,7 +217,7 @@ namespace project_library.MVVM.ViewModel
                     if (book != null)
                     {
                         // Navigate to the BookDetailPage with the selected book
-                        var bookDetailViewModel = new BookDetailViewModel(book, _mainViewModel);
+                        var bookDetailViewModel = new BookDetailViewModel(book, _mainViewModel, this);
                         _mainViewModel.CurrentView = bookDetailViewModel;
                     }
                     else
@@ -226,6 +226,11 @@ namespace project_library.MVVM.ViewModel
                     }
                 }
             }
+        }
+        public void Reload()
+        {
+            // Reload the search results using the current search parameters
+            ExecuteSearch(null);
         }
 
 

@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace project_library.MVVM.ViewModel
 {
-    public class HomeViewModel : ObservableObject
+    public class HomeViewModel : ObservableObject, IReloadable
     {
         private ObservableCollection<Books> _topBooks;
         private readonly MainViewModel _mainViewModel;
@@ -57,9 +57,14 @@ namespace project_library.MVVM.ViewModel
         {
             if (parameter is Books selectedBook)
             {
-                var bookDetailViewModel = new BookDetailViewModel(selectedBook, _mainViewModel);
+                var bookDetailViewModel = new BookDetailViewModel(selectedBook, _mainViewModel, this);
                 _mainViewModel.CurrentView = bookDetailViewModel;
             }
+        }
+        public void Reload()
+        {
+            // Reload the top books or other content
+            LoadTopBooks();
         }
     }
 }

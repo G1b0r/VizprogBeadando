@@ -10,6 +10,8 @@ using System.Windows.Input;
 using Library;
 using Microsoft.EntityFrameworkCore;
 using static project_library.MVVM.ViewModel.MyBooksViewModel;
+using project_library.Utilities;
+using System.Diagnostics;
 
 
 namespace project_library.MVVM.ViewModel
@@ -115,6 +117,10 @@ namespace project_library.MVVM.ViewModel
                     LoadTakenOutBooks();
 
                     kivett_lista.Remove(borrowedBook);
+
+                    EventLogger.LogEvent(
+                         $"User {_mainViewModel.CurrentUser.username} has returned book ID {borrowedBook.Book.book_id} ({borrowedBook.Book.title}) on {DateTime.Now}.",
+                            EventLogEntryType.Information);
 
                     MessageBox.Show("Book successfully returned!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
