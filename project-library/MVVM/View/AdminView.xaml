@@ -40,16 +40,14 @@
         </Grid>
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="20 0">
-                <ItemsControl x:Name="events" ItemsSource="{Binding events}">
+                <ItemsControl x:Name="events" ItemsSource="{Binding EventLogs}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Margin="10" Width="175" Height="280">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Width="50">
-                                        <TextBlock Margin="5" Text="{Binding event_level}" Foreground="white"/>
-                                        <TextBlock Margin="5" Text="{Binding event_time}" Foreground="white"/>
+                                        <TextBlock Margin="5" Text="{Binding}" Foreground="white"/>
                                     </StackPanel>
-                                    <TextBlock Margin="5" Text="{Binding event_desc}" Foreground="white"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -62,5 +60,6 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
+
     </Grid>
 </UserControl>

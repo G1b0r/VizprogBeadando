@@ -7,6 +7,7 @@ using System.Windows.Input;
 using project_library.Core;
 using project_library.MVVM.View;
 using Library;
+using System.Windows;
 
 namespace project_library.MVVM.ViewModel
 {
@@ -16,7 +17,7 @@ namespace project_library.MVVM.ViewModel
         private object _currentView;
         private readonly Stack<object> _navigationStack = new Stack<object>();
         private bool _isLoggedIn;
-        private Members _currentUser; // Add this property
+        private Members _currentUser; 
 
         public object CurrentView
         {
@@ -34,16 +35,26 @@ namespace project_library.MVVM.ViewModel
             {
                 _isLoggedIn = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsAdmin));
             }
         }
 
-        public Members CurrentUser // Add this property
+        public Members CurrentUser 
         {
             get { return _currentUser; }
             set
             {
                 _currentUser = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsAdmin));
+            }
+        }
+
+        public Visibility IsAdmin
+        {
+            get
+            {
+                return CurrentUser != null && CurrentUser.is_admin ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 

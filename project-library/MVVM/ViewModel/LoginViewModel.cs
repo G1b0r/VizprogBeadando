@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using project_library.Utilities;
+using System.Diagnostics;
 
 
 namespace project_library.MVVM.ViewModel
@@ -98,6 +99,8 @@ namespace project_library.MVVM.ViewModel
                         // Set IsLoggedIn to true
                         _mainViewModel.IsLoggedIn = true;
 
+                        EventLogger.LogEvent($"User {user.username} logged in successfully.", EventLogEntryType.Information);
+
                         // Navigate to HomeView
                         _mainViewModel.CurrentView = new HomeViewModel(_mainViewModel);
                     }
@@ -105,6 +108,9 @@ namespace project_library.MVVM.ViewModel
                     {
                         IsLoginSuccessful = false;
                         ErrorMessage = "Invalid username or password.";
+
+                        // Log failed login attempt
+                        EventLogger.LogEvent($"Failed login attempt for username: {Username}.", EventLogEntryType.Warning);
                     }
                 }
             }

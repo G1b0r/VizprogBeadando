@@ -49,8 +49,8 @@
 
                 <StackPanel Grid.Row="1">
                     <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285" Foreground="#fcf6f5"/>
-                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#fcf6f5"/>
-                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#fcf6f5"/>
+                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#fcf6f5" IsEnabled="{Binding IsLoggedIn}"/>
+                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#fcf6f5" IsEnabled="{Binding IsLoggedIn}"/>
                     <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285" Foreground="#fcf6f5"/>
                     <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#fcf6f5"/>
                 </StackPanel>

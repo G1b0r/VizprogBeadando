@@ -7,13 +7,24 @@ using System.Windows;
 using System.Windows.Input;
 using Library;
 using project_library.Core;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace project_library.MVVM.ViewModel
 {
     public class AdminViewModel : ObservableObject
     {
         private string _bookId;
-
+        private ObservableCollection<string> _eventLogs;
+        public ObservableCollection<string> EventLogs
+        {
+            get => _eventLogs;
+            set
+            {
+                _eventLogs = value;
+                OnPropertyChanged();
+            }
+        }
         public string BookId
         {
             get => _bookId;
@@ -29,6 +40,7 @@ namespace project_library.MVVM.ViewModel
         public AdminViewModel()
         {
             DeleteBookCommand = new RelayCommand(DeleteBook);
+            LoadEventLogs();
         }
 
         private void DeleteBook(object parameter)
@@ -53,6 +65,23 @@ namespace project_library.MVVM.ViewModel
             else
             {
                 MessageBox.Show("Please enter a valid numeric Book ID.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void LoadEventLogs()
+        {
+            EventLogs = new ObservableCollection<string>();
+
+            if (EventLog.SourceExists("LibraryApp"))
+            {
+                var eventLog = new EventLog("Application", ".", "LibraryApp");
+                foreach (EventLogEntry entry in eventLog.Entries)
+                {
+                    if (entry.Source == "LibraryApp")
+                    {
+                        EventLogs.Add($"{entry.TimeGenerated}: {entry.Message}");
+                    }
+                }
             }
         }
     }

@@ -96,9 +96,9 @@ namespace project_library.MVVM.ViewModel
             {
                 using (var dbContext = new LibraryDbContext())
                 {
-                    // Check for duplicate username or password
+                    // Check for duplicate username (case-insensitive) or password
                     var existingMember = await dbContext.Members
-                        .FirstOrDefaultAsync(m => m.username == Username || m.password == Password);
+                        .FirstOrDefaultAsync(m => EF.Functions.Like(m.username, Username) || m.password == Password);
 
                     if (existingMember != null)
                     {
