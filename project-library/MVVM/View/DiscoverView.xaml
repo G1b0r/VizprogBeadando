@@ -5,50 +5,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:project_library"
+              xmlns:viewModel="clr-namespace:project_library.MVVM.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
+            <!-- Header row -->
             <RowDefinition/>
+            <!-- Content row -->
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Text="Discover" Foreground="#fcf6f5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
+        <TextBlock Text="Discover" 
+            Foreground="#fcf6f5" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            FontSize="35" 
+            Margin="20,15,15,15" />
 
         <!-- Scrollable List of Books -->
         <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding UniqueBooks}">
-                <ItemsControl.ItemsPanel>
+            <ListBox ItemsSource="{Binding UniqueBooks}" 
+              SelectedItem="{Binding SelectedBook, Mode=TwoWay}" 
+              Margin="20" 
+              Background="Transparent" 
+              BorderThickness="0">
+                <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <WrapPanel />
                     </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Cursor" Value="Hand" />
+                        <EventSetter Event="MouseLeftButtonUp" Handler="ListBoxItem_MouseLeftButtonUp"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Button Command="{Binding DataContext.SelectBookCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                          CommandParameter="{Binding}"
-                          Background="Transparent"
-                            BorderBrush="Transparent"
-                            Cursor="Hand"
-                            Padding="0"
-                            Width="200"
-                            Height="250"
-                            Margin="10">
-                            <Button.ToolTip>
-                                <ToolTip Placement="Right" HorizontalOffset="10" VerticalOffset="0">
-                                    <StackPanel>
-                                        <!-- Book Title -->
-                                        <TextBlock Text="{Binding title}" FontWeight="Bold" FontSize="16" Foreground="Black" />
-                                    </StackPanel>
-                                </ToolTip>
-                            </Button.ToolTip>
-                            <Image Source="{Binding pic_name}" Width="200" Height="250" Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                            </Button>
-                        
+                        <Border Margin="10" Width="175" Height="280" Background="#333333" CornerRadius="5">
+                            <StackPanel>
+                                <Border Width="160" Height="200" CornerRadius="5" Margin="5">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="1"/>
+                                    </Border.Effect>
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding pic_name}" />
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock Margin="5" Text="{Binding title}" Foreground="#fcf6f5" FontSize="25"/>
+                                <TextBlock Margin="5" Text="{Binding genre}" Foreground="#fcf6f5" FontSize="15"/>
+                                <TextBlock Margin="5" Text="{Binding published_year}" Foreground="#fcf6f5" FontSize="15"/>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </ScrollViewer>
     </Grid>
 </UserControl>

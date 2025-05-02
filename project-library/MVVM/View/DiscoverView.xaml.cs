@@ -1,4 +1,5 @@
-﻿using project_library.MVVM.ViewModel;
+﻿using Library;
+using project_library.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,13 @@ namespace project_library.MVVM.View
         {
             InitializeComponent();
             DataContext = new DiscoverViewModel(mainViewModel);
+        }
+        private void ListBoxItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is DiscoverViewModel viewModel && sender is ListBoxItem item && item.DataContext is Books selectedBook)
+            {
+                viewModel.SelectBookCommand.Execute(selectedBook);
+            }
         }
     }
 }

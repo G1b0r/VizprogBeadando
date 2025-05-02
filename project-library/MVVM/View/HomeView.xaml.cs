@@ -48,6 +48,13 @@ namespace project_library.MVVM.View
             InitializeComponent();
             DataContext = new HomeViewModel(mainViewModel);
         }
+        private void ListBoxItem_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is DiscoverViewModel viewModel && sender is ListBoxItem item && item.DataContext is Books selectedBook)
+            {
+                viewModel.SelectBookCommand.Execute(selectedBook);
+            }
+        }
 
     }
 }
