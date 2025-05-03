@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="Add Book" Height="600" Width="700"
         WindowStartupLocation="CenterScreen"
-        Background="#2C2F33">
+        Background="#CADCFC">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20">
             <StackPanel>
                 <!-- Title -->
-                <TextBlock Text="Add a New Book" FontSize="24" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <TextBlock Text="Add a New Book" FontSize="24" FontWeight="Bold" Foreground="#00246B" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
                 <!-- Title Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Title:" VerticalAlignment="Center" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter book title"/>
+                    <TextBlock Text="Title:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter book title"/>
 
                 </StackPanel>
 
@@ -25,48 +25,48 @@
                 <ItemsControl ItemsSource="{Binding Authors}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Author Name"/>
-                                <TextBox Text="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Birthdate"/>
-                                <TextBox Text="{Binding Nationality, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="150" Margin="5" materialDesign:HintAssist.Hint="Nationality"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
+                                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="150" Margin="5" materialDesign:HintAssist.Hint="Author Name"/>
+                                <TextBox Text="{Binding Birthdate, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="150" Margin="5" materialDesign:HintAssist.Hint="Birthdate"/>
+                                <TextBox Text="{Binding Nationality, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="150" Margin="5" materialDesign:HintAssist.Hint="Nationality"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Button Content="Add Author" Command="{Binding AddAuthorCommand}" Width="150" Margin="0,10,0,0" Background="#7289DA" Foreground="White" FontWeight="Bold"/>
+                <Button Content="Add Author" Command="{Binding AddAuthorCommand}" Width="150" Margin="0,10,0,0" Background="#7289DA" Foreground="#00246B" FontWeight="Bold"/>
 
                 <!-- Category Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Category:" VerticalAlignment="Center" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter category"/>
+                    <TextBlock Text="Category:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter category"/>
                 </StackPanel>
 
                 <!-- Release Date Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Release Date:" VerticalAlignment="Center" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding ReleaseDate, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter release date"/>
+                    <TextBlock Text="Release Date:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding ReleaseDate, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter release date"/>
                 </StackPanel>
 
                 <!-- Publisher Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Publisher:" VerticalAlignment="Center" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter publisher name"/>
+                    <TextBlock Text="Publisher:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter publisher name"/>
                 </StackPanel>
 
                 <!-- Description Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Description:" VerticalAlignment="Top" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="400" Height="100" Margin="5" TextWrapping="Wrap" AcceptsReturn="True" materialDesign:HintAssist.Hint="Enter description"/>
+                    <TextBlock Text="Description:" VerticalAlignment="Top" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="400" Height="100" Margin="5" TextWrapping="Wrap" AcceptsReturn="True" materialDesign:HintAssist.Hint="Enter description"/>
                 </StackPanel>
 
                 <!-- Cover Pic Link Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Cover Pic Link:" VerticalAlignment="Center" Foreground="White" Width="120"/>
-                    <TextBox Text="{Binding CoverPicLink, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Width="400" Margin="5" materialDesign:HintAssist.Hint="Enter cover picture link"/>
+                    <TextBlock Text="Cover Pic Link:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBox Text="{Binding CoverPicLink, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="400" Margin="5" materialDesign:HintAssist.Hint="Enter cover picture link"/>
                 </StackPanel>
 
                 <!-- Add Button -->
-                <Button Content="Add to Library" Command="{Binding SaveBookCommand}" Width="200" Height="40" Margin="20,20,20,0" Background="#7289DA" Foreground="White" FontWeight="Bold"/>
+                <Button Content="Add to Library" Command="{Binding SaveBookCommand}" Width="200" Height="40" Margin="20,20,20,0" Background="#7289DA" Foreground="#00246B" FontWeight="Bold"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>
