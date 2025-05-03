@@ -46,7 +46,7 @@ namespace Library
                 (!optionsBuilder.Options.Extensions.OfType<RelationalOptionsExtension>().Any(ext => !string.IsNullOrEmpty(ext.ConnectionString) || ext.Connection != null) &&
                  !optionsBuilder.Options.Extensions.Any(ext => !(ext is RelationalOptionsExtension) && !(ext is CoreOptionsExtension))))
             {
-                optionsBuilder.UseSqlServer(@"Server=User2020\SQLEXPRESS;Database=Libraryg;Trusted_Connection=True;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer(@"Server=FGP-LAPTOP\SQLEXPRESS;Database=library;Trusted_Connection=True;TrustServerCertificate=True;");
             }
             CustomizeConfiguration(ref optionsBuilder);
             base.OnConfiguring(optionsBuilder);

@@ -22,10 +22,10 @@
         <TextBlock Text="Search" Foreground="#00246B" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Title:" Foreground="#00246B" FontSize="15" Margin="5"/>
-            <TextBox x:Name="titleInput" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
+            <TextBox x:Name="titleInput" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5"  materialDesign:HintAssist.Hint="Title"/>
             
             <TextBlock Text="Author Name:" Foreground="#00246B" FontSize="15" Margin="5"/>
-            <TextBox x:Name="authorNameInput" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
+            <TextBox x:Name="authorNameInput" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5"  materialDesign:HintAssist.Hint="Author name"/>
             
             <TextBlock Text="Release year" Foreground="#00246B" FontSize="15" Margin="5"/>
             <TextBox x:Name="releasebeforeInput" Text="{Binding ReleaseBefore, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" materialDesign:HintAssist.Hint="The year before release"/>
@@ -34,10 +34,10 @@
          
             
             <TextBlock Text="Publisher" Foreground="#00246B" FontSize="15" Margin="5"/>
-            <TextBox x:Name="publisherInput" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
+            <TextBox x:Name="publisherInput" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5"  materialDesign:HintAssist.Hint="Publisher"/>
 
             <TextBlock Text="Genre" Foreground="#00246B" FontSize="15" Margin="5"/>
-            <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
+            <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5"  materialDesign:HintAssist.Hint="Genre"/>
 
 
             <Button x:Name="searchOkBtn" Content="Search" Margin="5" Command="{Binding SearchCommand}"/>

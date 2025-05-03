@@ -47,11 +47,11 @@
                 <TextBlock Text="Library" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="20,0,0,0" Foreground="#00246B"/>
 
                 <StackPanel Grid.Row="1">
-                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285" Foreground="#00246B"/>
-                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}"/>
-                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}"/>
-                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285" Foreground="#00246B"/>
-                    <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#00246B"/>
+                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285" Foreground="#00246B" Cursor="Hand"/>
+                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}" Cursor="Hand"/>
+                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}" Cursor="Hand"/>
+                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285" Foreground="#00246B" Cursor="Hand"/>
+                    <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#00246B" Cursor="Hand"/>
                 </StackPanel>
 
                 <!-- <TextBox Width="300" Height="75" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBox}" Foreground="#fcf6f5" Background="#3d275c"/> -->

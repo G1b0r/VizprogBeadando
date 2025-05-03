@@ -37,7 +37,7 @@
 
                 <!-- Category Input -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <TextBlock Text="Category:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
+                    <TextBlock Text="Genre:" VerticalAlignment="Center" Foreground="#00246B" Width="120"/>
                     <TextBox Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Width="300" Margin="5" materialDesign:HintAssist.Hint="Enter category"/>
                 </StackPanel>
 
