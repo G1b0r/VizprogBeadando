@@ -8,30 +8,36 @@
             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Register" Foreground="#fcf6f5" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,20"/>
-        <Button x:Name="localModeBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="180" FontSize="12" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-        <StackPanel>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Text="Register" Foreground="#00246B" FontSize="24" HorizontalAlignment="Left" Margin="20,10,0,20"/>
+        <Button Grid.Row="1" x:Name="localModeBtn" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,10,10,20" Content="I already have an account" Width="180" FontSize="12" Command="{Binding DataContext.LoginViewCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+        <StackPanel Grid.Row="1">
             <TextBlock Margin="0 30 0 5" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Text="Welcome to our Library"/>
             <TextBlock FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Please register your account to access extended features"/>
 
             <!-- Username Input -->
-            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"  Margin="0 10 0 0" x:Name="txtUsername" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.IsFloating="False" Margin="0 10 0 0" x:Name="txtUsername" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Username" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             <!-- Full Name Input -->
-            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtFullName" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Full Name" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.IsFloating="False" x:Name="txtFullName" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Full Name" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             <!-- Phone Number Input -->
-            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"  x:Name="txtPhoneNumber" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Email" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.IsFloating="False" x:Name="txtPhoneNumber" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Email" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesgin}" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
             <!-- Password Input -->
-            <PasswordBox Margin="0 15 0 0" x:Name="txtPassword" PasswordChanged="PasswordBox_PasswordChanged" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Password" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
+            <PasswordBox Margin="0 15 0 0" x:Name="txtPassword" PasswordChanged="PasswordBox_PasswordChanged" materialDesign:HintAssist.IsFloating="False" Width="250" FontSize="14" materialDesign:HintAssist.Hint="Enter Password" BorderThickness="1.5" BorderBrush="{DynamicResource MaterialDesignDivider}" Style="{StaticResource MaterialDesignOutlinedPasswordBox}"/>
 
             <!-- Register Button -->
-            <Button Margin="0 15 0 0" x:Name="registerBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" Height="45" Width="250" materialDesign:ButtonAssist.CornerRadius="8" FontSize="14" Content="Register"  Command="{Binding RegisterCommand}" />
+            <Button Margin="0 15 0 0" x:Name="registerBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:HintAssist.IsFloating="False" Height="45" Width="250" materialDesign:ButtonAssist.CornerRadius="8" FontSize="14" Content="Register"  Command="{Binding RegisterCommand}" />
             
             <!-- Success and Error Messages -->
-            <TextBlock Text="{Binding SuccessMessage}" Foreground="Green" Margin="0,10,0,0" />
-            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,10,0,0" />
+            <TextBlock Text="{Binding SuccessMessage}" Foreground="Green" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,10,0,0"  HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>

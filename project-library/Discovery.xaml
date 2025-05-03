@@ -24,12 +24,12 @@
 
 
 
-    <materialDesign:Card UniformCornerRadius="15" Background="#3e3b94" Margin="25">
+    <materialDesign:Card UniformCornerRadius="15" Background="#CADCFC" BorderBrush="red" Foreground="#00246B" Margin="25">
         <StackPanel>
-            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="0 20 20 0" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25" Foreground="#fcf6f5">
-                <StackPanel Margin="16 10 0 6" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button ToolTip="Log out?" Margin="0 8 0 0" Content="Log out" Command="{Binding LogoutCommand}" />
-                    <Button ToolTip="Having trouble logging in?" Margin="0 8 0 0" Content="Help Me"/>
+            <materialDesign:PopupBox HorizontalAlignment="Right" Margin="20 20 20 20" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Height="25" Foreground="#00246B" Background="#CADCFC">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="#CADCFC"> <!--Margin="16 10 0 6"-->
+                    <Button ToolTip="Log out?" Margin="0 0 0 0" Content="Log out" Command="{Binding LogoutCommand}" />
+                    <Button ToolTip="Having trouble logging in?" Margin="0 0 0 0" Content="Help Me"/>
                     <Button x:Name="btn_exit" ToolTip="Close Appliaction" Content="Exit Application" Click="exitApp"/>
                 </StackPanel>
             </materialDesign:PopupBox>
@@ -45,14 +45,14 @@
                     <RowDefinition Height="500"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Library" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="20,0,0,0" Foreground="#fcf6f5"/>
+                <TextBlock Text="Library" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" Margin="20,0,0,0" Foreground="#00246B"/>
 
                 <StackPanel Grid.Row="1">
-                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285" Foreground="#fcf6f5"/>
-                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#fcf6f5" IsEnabled="{Binding IsLoggedIn}"/>
-                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#fcf6f5" IsEnabled="{Binding IsLoggedIn}"/>
-                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285" Foreground="#fcf6f5"/>
-                    <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#fcf6f5"/>
+                    <RadioButton Content="Home" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeViewCommand}" Width="285" Foreground="#00246B"/>
+                    <RadioButton Content="Discover" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoverViewCommand}" Width="285" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}"/>
+                    <RadioButton Content="Search" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Command="{Binding SearchViewCommand}" Foreground="#00246B" IsEnabled="{Binding IsLoggedIn}"/>
+                    <RadioButton Content="My books" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Command="{Binding MyBooksViewCommand}" Width="285" Foreground="#00246B"/>
+                    <RadioButton Content="Admin" Height="75" FontSize="25" Style="{StaticResource MenuButtonTheme}" Width="285" Visibility="{Binding IsAdmin}" Command="{Binding AdminViewCommand}" Foreground="#00246B"/>
                 </StackPanel>
 
                 <!-- <TextBox Width="300" Height="75" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBox}" Foreground="#fcf6f5" Background="#3d275c"/> -->

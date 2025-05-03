@@ -19,25 +19,25 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Search" Foreground="#fcf6f5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
+        <TextBlock Text="Search" Foreground="#00246B" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="35" Margin="20,15,15,15"/>
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Title:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="titleInput" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
+            <TextBlock Text="Title:" Foreground="#00246B" FontSize="15" Margin="5"/>
+            <TextBox x:Name="titleInput" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
             
-            <TextBlock Text="Author Name:" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="authorNameInput" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
+            <TextBlock Text="Author Name:" Foreground="#00246B" FontSize="15" Margin="5"/>
+            <TextBox x:Name="authorNameInput" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
             
-            <TextBlock Text="Release year" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="releasebeforeInput" Text="{Binding ReleaseBefore, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" materialDesign:HintAssist.Hint="The year before release"/>
-            <TextBox x:Name="releaseafterInput" Text="{Binding ReleaseAfter, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" materialDesign:HintAssist.Hint="The year after release" />
+            <TextBlock Text="Release year" Foreground="#00246B" FontSize="15" Margin="5"/>
+            <TextBox x:Name="releasebeforeInput" Text="{Binding ReleaseBefore, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" materialDesign:HintAssist.Hint="The year before release"/>
+            <TextBox x:Name="releaseafterInput" Text="{Binding ReleaseAfter, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" materialDesign:HintAssist.Hint="The year after release" />
 
          
             
-            <TextBlock Text="Publisher" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="publisherInput" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
+            <TextBlock Text="Publisher" Foreground="#00246B" FontSize="15" Margin="5"/>
+            <TextBox x:Name="publisherInput" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
 
-            <TextBlock Text="Genre" Foreground="#fcf6f5" FontSize="15" Margin="5"/>
-            <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="LightGray" Foreground="Black" Margin="5" />
+            <TextBlock Text="Genre" Foreground="#00246B" FontSize="15" Margin="5"/>
+            <TextBox x:Name="categoryInput" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Background="#B9CBEB" Foreground="Black" Margin="5" />
 
 
             <Button x:Name="searchOkBtn" Content="Search" Margin="5" Command="{Binding SearchCommand}"/>
@@ -63,7 +63,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="10" Width="175" Background="#333333" CornerRadius="5">
+                        <Border Margin="10" Width="175" Background="#6dc7de" Height="400" CornerRadius="5">
                             <StackPanel>
                                 <Border Width="160" Height="200" CornerRadius="5" Margin="5" RenderOptions.BitmapScalingMode="HighQuality">
                                     <Border.Effect>
@@ -73,10 +73,10 @@
                                         <ImageBrush ImageSource="{Binding CoverImagePath}"/>
                                     </Border.Background>
                                 </Border>
-                                <TextBlock Margin="5" Text="{Binding Title}" Foreground="#fcf6f5" FontSize="20" TextWrapping="Wrap"/>
-                                <TextBlock Margin="5" Text="{Binding Author}" Foreground="#fcf6f5" FontSize="15"/>
-                                <TextBlock Margin="5" Text="{Binding Genre}" Foreground="#fcf6f5" FontSize="15"/>
-                                <TextBlock Margin="5" Text="{Binding PublishedYear}" Foreground="#fcf6f5" FontSize="15"/>
+                                <TextBlock Margin="5" Text="{Binding Title}" Foreground="#00246B" FontSize="20" TextWrapping="Wrap"/>
+                                <TextBlock Margin="5" Text="{Binding Author}" Foreground="#00246B" FontSize="15"/>
+                                <TextBlock Margin="5" Text="{Binding Genre}" Foreground="#00246B" FontSize="15"/>
+                                <TextBlock Margin="5" Text="{Binding PublishedYear}" Foreground="#00246B" FontSize="15"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
