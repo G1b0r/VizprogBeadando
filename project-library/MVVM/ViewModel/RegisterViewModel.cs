@@ -25,6 +25,7 @@ namespace project_library.MVVM.ViewModel
             {
                 _username = value;
                 OnPropertyChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -35,6 +36,7 @@ namespace project_library.MVVM.ViewModel
             {
                 _password = value;
                 OnPropertyChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -45,6 +47,7 @@ namespace project_library.MVVM.ViewModel
             {
                 _name = value;
                 OnPropertyChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -55,6 +58,7 @@ namespace project_library.MVVM.ViewModel
             {
                 _email = value;
                 OnPropertyChanged();
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -87,7 +91,20 @@ namespace project_library.MVVM.ViewModel
 
         private bool CanExecuteRegisterCommand(object arg)
         {
-            return true;
+          return !string.IsNullOrWhiteSpace(Username) &&
+          !string.IsNullOrWhiteSpace(Password) &&
+          !string.IsNullOrWhiteSpace(Name) &&
+          !string.IsNullOrWhiteSpace(Email) &&
+          Username.Length >= 3 &&
+          Password.Length >= 3 &&
+          IsValidEmail(Email);
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            // Regular expression to validate email format
+            var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return System.Text.RegularExpressions.Regex.IsMatch(email, emailRegex);
         }
 
         private async void ExecuteRegisterCommand(object obj)
